@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-import { HomesPage } from './tabs/home.page';
+import { authGuard } from './commons/auth/auth-guard';
+import { HomesPage } from './home/home.page';
 import { InfoPage } from './components/info/info.page';
 import { StorePage } from './components/store/store.page';
 import { ScanPage } from './components/scan/scan.page';
@@ -10,6 +11,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomesPage,
+    canActivate: [authGuard],
     children: [
       {
         path: 'info',
@@ -39,8 +41,13 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'login',
+    loadComponent: () =>
+      import('./components/login/login.page').then((m) => m.LoginPage),
+  },
+  {
     path: '',
-    redirectTo: '/home/scan',
+    redirectTo: '/login',
     pathMatch: 'full',
   },
 ];

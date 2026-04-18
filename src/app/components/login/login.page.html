@@ -1,7 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Login</ion-card-title>
+  </ion-card-header>
 
-<ion-content class="ion-padding"> LoginPage </ion-content>
+  <ion-card-content>
+    <ion-input
+      type="text"
+      label="Username"
+      placeholder="Username"
+      [(ngModel)]="loginData.username"
+    ></ion-input>
+    <ion-input
+      type="password"
+      label="Password"
+      placeholder="Password"
+      [(ngModel)]="loginData.password"
+    ></ion-input>
+
+    <ion-button (click)="login()">Login</ion-button>
+    <a class="forgot-password" (click)="forgetPassword()">Forgot Password?</a>
+  </ion-card-content>
+</ion-card>
+
+{{loginData | json}}
